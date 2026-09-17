@@ -1,0 +1,19 @@
+@model IEnumerable<VetCare.Models.Appointment>
+@{ ViewData["Title"] = "Citas"; }
+<div class="d-flex justify-content-between mb-3"><div><h1>Citas</h1><p class="text-muted">Agenda de atención veterinaria.</p></div><a asp-action="Create" class="btn btn-primary align-self-start">Agendar cita</a></div>@if (TempData["SuccessMessage"] is not null) { <div class="alert alert-success">@TempData["SuccessMessage"]</div> }
+<table class="table table-hover"><thead><tr><th>Fecha</th><th>Mascota</th><th>Propietario</th><th>Motivo</th><th>Estado</th><th></th></tr></thead><tbody>@foreach (var item in Model) { <tr><td>@item.ScheduledAt.ToString("dd/MM/yyyy HH:mm")</td><td>@item.Pet.Name</td><td>@item.Pet.Owner.FullName</td><td>@item.Reason</td><td>@item.Status</td><td class="text-end"><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Editar</a> <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline"><button class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar esta cita?')">Eliminar</button></form></td></tr> }</tbody></table>
+<div id="liveNotice" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@10.0.0/dist/browser/signalr.min.js"></script>
+<script>
+const connection = new signalR.HubConnectionBuilder().withUrl('/hubs/appointments').withAutomaticReconnect().build();
+connection.on('AppointmentCreated', appointment => {
+  const toast = document.createElement('div'); toast.className = 'toast show text-bg-success';
+  const body = document.createElement('div'); body.className = 'toast-body';
+  body.textContent = `Nueva cita: ${appointment.pet} — ${appointment.owner}. Actualizando agenda…`;
+  toast.appendChild(body); document.getElementById('liveNotice').replaceChildren(toast);
+  setTimeout(() => location.reload(), 1500);
+});
+connection.start().catch(error => console.error(error));
+</script>
+}

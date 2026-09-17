@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="py-5 text-center">
+    <h1 class="display-4 fw-semibold">VetCare</h1>
+    <p class="lead text-muted">Administra la información de tu clínica desde un solo lugar.</p>
+    <div class="row g-3 mt-4">
+        <div class="col-md-3"><a asp-controller="Owners" asp-action="Index" class="card card-body text-decoration-none h-100"><strong>Propietarios</strong><span class="text-muted">Datos de contacto</span></a></div>
+        <div class="col-md-3"><a asp-controller="Pets" asp-action="Index" class="card card-body text-decoration-none h-100"><strong>Mascotas</strong><span class="text-muted">Pacientes registrados</span></a></div>
+        <div class="col-md-3"><a asp-controller="Appointments" asp-action="Index" class="card card-body text-decoration-none h-100"><strong>Citas</strong><span class="text-muted">Agenda veterinaria</span></a></div>
+        <div class="col-md-3"><a asp-controller="MedicalRecords" asp-action="Index" class="card card-body text-decoration-none h-100"><strong>Historiales</strong><span class="text-muted">Diagnósticos y tratamientos</span></a></div>
+    </div>
+</div>

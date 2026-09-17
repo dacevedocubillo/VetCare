@@ -1,0 +1,4 @@
+@model VetCare.Models.Owner
+@{ ViewData["Title"] = "Editar propietario"; }
+<h1>Editar propietario</h1><form method="post"><input type="hidden" asp-for="Id" /><input type="hidden" asp-for="RegisteredAt" /><partial name="_Form" model="Model" /><button class="btn btn-primary">Guardar cambios</button> <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

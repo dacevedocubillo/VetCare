@@ -1,0 +1,3 @@
+@model VetCare.Models.Owner
+@{ ViewData["Title"] = "Eliminar propietario"; }
+<h1>Eliminar propietario</h1><div class="alert alert-warning">¿Desea eliminar a <strong>@Model.FullName</strong>? Esta acción no se puede deshacer.</div><form method="post"><input type="hidden" asp-for="Id" /><button class="btn btn-danger">Eliminar</button> <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a></form>

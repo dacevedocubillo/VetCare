@@ -1,0 +1,6 @@
+@model VetCare.Models.Owner
+@{ ViewData["Title"] = "Detalle del propietario"; }
+<div class="d-flex justify-content-between"><div><h1>@Model.FullName</h1><p class="text-muted">@Model.Phone · @Model.Email</p></div><a asp-controller="Pets" asp-action="Create" asp-route-ownerId="@Model.Id" class="btn btn-primary align-self-start">Agregar mascota</a></div>
+<dl class="row"><dt class="col-sm-3">Dirección</dt><dd class="col-sm-9">@(Model.Address ?? "Sin registrar")</dd><dt class="col-sm-3">Estado</dt><dd class="col-sm-9">@(Model.IsActive ? "Activo" : "Inactivo")</dd></dl>
+<h2 class="h4 mt-4">Mascotas</h2>@if (!Model.Pets.Any()) { <p class="text-muted">No tiene mascotas registradas.</p> } else { <div class="list-group">@foreach (var pet in Model.Pets) { <a asp-controller="Pets" asp-action="Details" asp-route-id="@pet.Id" class="list-group-item list-group-item-action">@pet.Name — @pet.Species</a> }</div> }
+<div class="mt-3"><a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a> <a asp-action="Index" class="btn btn-outline-secondary">Volver</a></div>

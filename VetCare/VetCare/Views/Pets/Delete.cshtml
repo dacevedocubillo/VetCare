@@ -1,0 +1,3 @@
+@model VetCare.Models.Pet
+@{ ViewData["Title"] = "Eliminar mascota"; }
+<h1>Eliminar mascota</h1><div class="alert alert-warning">Se eliminarán <strong>@Model.Name</strong>, sus citas y sus historiales médicos.</div><form method="post"><input type="hidden" asp-for="Id" /><button class="btn btn-danger">Eliminar</button> <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a></form>

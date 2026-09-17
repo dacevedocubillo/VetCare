@@ -1,0 +1,4 @@
+@model VetCare.Models.Appointment
+@{ ViewData["Title"] = "Editar cita"; }
+<h1>Editar cita</h1><form method="post"><input type="hidden" asp-for="Id" /><partial name="_Form" model="Model" /><button class="btn btn-primary">Guardar cambios</button> <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

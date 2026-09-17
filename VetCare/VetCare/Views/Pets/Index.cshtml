@@ -1,0 +1,5 @@
+@model IEnumerable<VetCare.Models.Pet>
+@{ ViewData["Title"] = "Mascotas"; }
+<div class="d-flex justify-content-between align-items-center mb-3"><div><h1>Mascotas</h1><p class="text-muted">Pacientes de la clínica.</p></div><a asp-action="Create" class="btn btn-primary">Registrar mascota</a></div>
+@if (TempData["SuccessMessage"] is not null) { <div class="alert alert-success">@TempData["SuccessMessage"]</div> }
+<div class="table-responsive"><table class="table table-hover"><thead><tr><th>Nombre</th><th>Especie</th><th>Raza</th><th>Propietario</th><th></th></tr></thead><tbody>@foreach (var item in Model) { <tr><td>@item.Name</td><td>@item.Species</td><td>@item.Breed</td><td>@item.Owner.FullName</td><td class="text-end"><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Ver</a> <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Editar</a> <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Eliminar</a></td></tr> }</tbody></table></div>
